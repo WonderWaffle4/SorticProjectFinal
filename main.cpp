@@ -71,7 +71,7 @@ int main(){
     bool WantToRead = false;
     string line;
     vector<int> a, b;
-    cout << "Do you want to read from file? Type \"yes\" if you do: ";
+    cout << "Do you want to read from file? Type \"yes\" if you do and something else if you don't: ";
     cin >> line;
     if(line == "yes")
         optionYes(WantToRead, a, Console);

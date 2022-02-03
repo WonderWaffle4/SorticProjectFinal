@@ -11,16 +11,16 @@ bool isSorted(vector<int> arr){
     return true;
 }
 
-int maxNumIndex(vector<int> arr){
+int minNumIndex(vector<int> arr){
     int length = arr.size();
     if(length == 0 || length == 1)
         return 0;
     int index = 0;
     for(long long i = 1; i < length - 1; i++){
-        if(arr[i] > arr[index])
+        if(arr[i] < arr[index])
             index = i;
     }
-    if(arr[length - 1] > arr[index])
+    if(arr[length - 1] < arr[index])
         index = length - 1;
     return index;
 }
@@ -29,7 +29,7 @@ void sorter(vector<int> &a, vector<int> &b, HANDLE Console, ofstream &outputToFi
     int buffer;
     if(!isSorted(a)){
         while(a.size() != 0){
-            buffer = maxNumIndex(a);
+            buffer = minNumIndex(a);
             for(long long i = 0; i < buffer; i++){
                 rra(a);
                 printStep(a, b, Console, "rra", outputToFile);
@@ -39,8 +39,14 @@ void sorter(vector<int> &a, vector<int> &b, HANDLE Console, ofstream &outputToFi
             printStep(a, b, Console, "pb", outputToFile);
             numberOfIterations++;
         }
+        buffer = b.size();
+        for(long long i = 0; i < buffer; i++){
+            pa(a, b);
+            printStep(a, b, Console, "pb", outputToFile);
+            numberOfIterations++;
+        }
         cout << endl;
-        printArray(b, outputToFile);
+        printArray(a, outputToFile);
     }
     else
         printArray(a, outputToFile);
